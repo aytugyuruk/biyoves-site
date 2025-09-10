@@ -1,0 +1,5 @@
+# Ignore large binaries locally
+downloads/
+*.exe
+.DS_Store
+

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO ve Site Bilgileri -->
+    <title>BiyoVes — Otomatik Biyometrik & Vesikalık Fotoğraf</title>
+    <meta name="description" content="BiyoVes — fotoğrafçılar için otomatik yüz tespiti ve doğru ölçülendirme ile biyometrik ve vesikalık fotoğraflar üreten masaüstü uygulama. Ücretsiz indir.">
+    
+    <!-- Open Graph Meta Etiketleri -->
+    <meta property="og:title" content="BiyoVes — Otomatik Biyometrik & Vesikalık Fotoğraf">
+    <meta property="og:description" content="1 saniyede kusursuz biyometrik ve vesikalık fotoğraflar oluşturun. Fotoğrafçılar için tasarlandı.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.biyoves.com"> <!-- Burayı kendi domain adresinizle değiştirin -->
+    <meta property="og:image" content="https://placehold.co/1200x630/20B2AA/FFFFFF?text=BiyoVes"> <!-- Paylaşım görseli için URL -->
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/logo.png" type="image/png">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Gömülü CSS Stilleri (Yeniden Tasarlandı) -->
+    <style>
+        /* == DEĞİŞKENLER VE TEMEL SIFIRLAMA == */
+        :root {
+            --bg-white: #FFFFFF;
+            --bg-light: #F7F9FC;
+            --text-primary: #1A202C; /* Daha koyu ve modern bir siyah */
+            --text-secondary: #4A5568; /* Daha yumuşak bir gri */
+            --accent-color: #20B2AA; /* Turkuaz */
+            --accent-hover: #1a8d87;
+            --border-color: #E2E8F0;
+            --container-width: 1140px;
+            --border-radius: 12px;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* == GENEL YARDIMCI SINIFLAR == */
+        .container {
+            max-width: var(--container-width);
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+        
+        section:nth-of-type(even) {
+            background-color: var(--bg-light);
+        }
+
+        /* == TİPOGRAFİ == */
+        h1, h2, h3 {
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: 3.5rem; /* Daha etkili bir başlık */
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 550px;
+        }
+        
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* == DÜĞME STİLLERİ == */
+        .btn {
+            display: inline-flex; /* İkon hizalaması için */
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: center;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            text-decoration: none;
+        }
+        
+        .btn-secondary {
+            background-color: var(--bg-white);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+        
+        .btn-secondary:hover {
+             background-color: var(--bg-light);
+             transform: translateY(-3px);
+             text-decoration: none;
+        }
+
+        /* == HEADER == */
+        .main-header {
+            padding: 24px 0;
+            position: sticky;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            transition: padding 0.3s ease;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .logo img {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .main-nav a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 8px 10px;
+            border-radius: 8px;
+        }
+        .main-nav a:hover {
+            color: var(--text-primary);
+            background-color: var(--bg-light);
+            text-decoration: none;
+        }
+        .header-cta .btn {
+            padding: 12px 18px;
+            font-weight: 700;
+        }
+        
+        /* == HERO BÖLÜMÜ (Yeni Tasarım) == */
+        #hero {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 80px;
+        }
+        .hero-content {
+            text-align: left;
+        }
+        .hero-image-container {
+            background: linear-gradient(145deg, var(--bg-light), #eaf6f5);
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-image-placeholder {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+        }
+        .hero-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .license-note {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* == ÖZELLİKLER BÖLÜMÜ (Kart Tasarımı) == */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            background-color: var(--bg-white);
+            padding: 32px;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-item svg {
+            width: 40px;
+            height: 40px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-item h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .feature-item p {
+            font-size: 1rem;
+            margin-bottom: 0;
+            max-width: none; /* Kart içi metinler tam genişlikte olsun */
+        }
+
+        /* == NASIL ÇALIŞIR BÖLÜMÜ (Dikey Adım Tasarımı) == */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            position: relative;
+        }
+        .step {
+            text-align: center;
+        }
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            background-color: var(--bg-white);
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 24px auto;
+            position: relative;
+            z-index: 2;
+        }
+        .step h3 {
+             font-size: 1.2rem;
+             font-weight: 700;
+        }
+        .step p {
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        /* == EKRAN GÖRÜNTÜLERİ / KARŞILAŞTIRMA BÖLÜMÜ (OKLU AKIŞ) == */
+        .flow-compare-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        .flow-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+        .flow-caption {
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .flow-image {
+            flex: 0 0 auto;
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 4 / 3;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-white);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .flow-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .flow-arrow {
+            flex: 0 0 auto;
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        /* == LİSANS VE İNDİRME BÖLÜMÜ == */
+        #download .container {
+            max-width: 700px;
+            text-align: center;
+        }
+        .download-buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        /* == SSS BÖLÜMÜ == */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+        .faq-item summary {
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 24px 0;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 400;
+            transition: transform 0.3s ease;
+        }
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+        .faq-item p {
+            padding: 0 10px 24px 10px; /* Soldan/sağdan simetrik boşluk */
+            margin: 0;
+            max-width: none; /* SSS metinleri daralmadan hizalı görünsün */
+        }
+        
+        /* == FOOTER == */
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            background-color: var(--text-primary);
+            color: #A0AEC0;
+        }
+        footer a {
+            color: var(--bg-white);
+        }
+
+        /* == RESPONSIVE TASARIM == */
+        @media (max-width: 992px) {
+            .hero-layout {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content {
+                text-align: center;
+                order: 2;
+            }
+            .hero-image-container {
+                order: 1;
+                margin-bottom: 40px;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .main-nav { display: none; }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            section { padding: 80px 0; }
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <nav class="main-nav" aria-label="Ana menü">
+                <a href="#features">Özellikler</a>
+                <a href="#how-it-works">Nasıl Çalışır?</a>
+                <a href="#screenshots">Örnekler</a>
+                <a href="#faq">SSS</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="hero">
+            <div class="container">
+                <div class="hero-layout">
+                    <div class="hero-content">
+                        <h1>3 Saniyede Biyometrik & Vesikalık Oluşturun</h1>
+                        <p>Yapay zeka yüzü otomatik algılar, ölçülendirmeyi standartlara göre yapar; siz saniyeler içinde profesyonel sonuç alırsınız. Fotoğrafçılar için tasarlandı.</p>
+                        <div class="hero-buttons">
+                            <a href="downloads/BiyoVes.exe" class="btn btn-primary" download>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                Ücretsiz İndir (.exe)
+                            </a>
+                        </div>
+                        
+                    </div>
+                    <div class="hero-image-container">
+                        <!-- Buraya kendi logo.png dosyanızı koyabilirsiniz -->
+                        <img src="assets/logo.png" alt="BiyoVes Uygulama İkonu" class="hero-image-placeholder" onerror="this.src='https://placehold.co/400x400/FFFFFF/333333?text=BiyoVes'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="container">
+                <h2>Neden BiyoVes?</h2>
+                <p class="section-subtitle">Stüdyonuzun verimliliğini artıracak, zamandan tasarruf ettirecek ve iş akışınızı kolaylaştıracak güçlü özellikler.</p>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path><path d="M12 6c-3.309 0-6 2.691-6 6s2.691 6 6 6 6-2.691 6-6-2.691-6-6-6zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z"></path></svg>
+                        <h3>Otomatik Yüz Tespiti</h3>
+                        <p>Yapay zeka, fotoğraftaki yüzü anında ve hatasız bir şekilde bulur.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                        <h3>Doğru Ölçülendirme</h3>
+                        <p>Tüm biyometrik standartlara uygun, mükemmel ölçülendirmeyi otomatik yapar.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                        <h3>Hızlı ve Kolay Kullanım</h3>
+                        <p>Sadece fotoğrafı sürükleyin. Geri kalan her şeyi BiyoVes saniyeler içinde halleder.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="how-it-works">
+            <div class="container">
+                <h2>Sadece 4 Adımda Hazır</h2>
+                <p class="section-subtitle">Karmaşık menüler ve ayarlar olmadan, en hızlı şekilde sonuca ulaşın.</p>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Fotoğrafı Yükle</h3>
+                        <p>İşlem yapmak istediğiniz fotoğrafı uygulamaya sürükleyin.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Yüz Tespit Edilir</h3>
+                        <p>Uygulama yüzü otomatik olarak algılar ve merkezler.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Ölçülendirme Yapılır</h3>
+                        <p>Kırpma ve boyutlandırma standarda göre anında ayarlanır.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Çıktı Hazır</h3>
+                        <p>Kullanıma hazır vesikalık veya biyometrik fotoğrafınız kaydedilir.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- YENİ: OKLU AKIŞ KARŞILAŞTIRMA BÖLÜMÜ -->
+        <section id="screenshots">
+            <div class="container">
+                <h2>BiyoVes'in Gücünü Görün</h2>
+                <p class="section-subtitle">Sol tarafta kaynak, sağ tarafta sonuç. Aradaki ok, dönüşümü temsil eder.</p>
+                <div class="flow-compare-list">
+                    <div>
+                        <div class="flow-caption">Biyometrik Sonuç</div>
+                        <div class="flow-row">
+                            <div class="flow-image">
+                                <img src="assets/kaynak.jpg" alt="Kaynak Fotoğraf" onerror="this.src='https://placehold.co/800x600/999999/FFFFFF?text=kaynak.jpg'">
+                            </div>
+                            <div class="flow-arrow" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </div>
+                            <div class="flow-image">
+                                <img src="assets/biyometrik.jpg" alt="Biyometrik Sonuç" onerror="this.src='https://placehold.co/800x600/CCCCCC/FFFFFF?text=biyometrik.jpg'">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flow-caption">Vesikalık Sonuç</div>
+                        <div class="flow-row">
+                            <div class="flow-image">
+                                <img src="assets/kaynak.jpg" alt="Kaynak Fotoğraf" onerror="this.src='https://placehold.co/800x600/999999/FFFFFF?text=kaynak.jpg'">
+                            </div>
+                            <div class="flow-arrow" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </div>
+                            <div class="flow-image">
+                                <img src="assets/vesikalik.jpg" alt="Vesikalık Sonuç" onerror="this.src='https://placehold.co/800x600/CCCCCC/FFFFFF?text=vesikalik.jpg'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="download">
+            <div class="container">
+                <h2>BiyoVes'i Hemen Deneyin</h2>
+                <p>Windows için BiyoVes’i ücretsiz indirin. İlk 5 fotoğraf ücretsizdir; sonrasında fotoğraf başına 5 TL alınır.</p>
+                <div class="download-buttons">
+                    <a href="downloads/BiyoVes.exe" class="btn btn-primary" download>Ücretsiz İndir (.exe)</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="container">
+                <h2>Sıkça Sorulan Sorular</h2>
+                <div class="faq-container">
+                    <details class="faq-item">
+                        <summary>Uygulama ücretsiz mi?</summary>
+                        <p>BiyoVes, ilk 5 fotoğraf için ücretsizdir. Sonrasında fotoğraf başına 5 TL alınır.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Hangi işletim sistemleriyle uyumlu?</summary>
+                        <p>BiyoVes, Windows için (.exe) mevcuttur.</p>
+                    </details>
+                    
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 BiyoVes. Tüm hakları saklıdır.</p>
+            <p>Destek için: <a href="mailto:biyoves@gmail.com">biyoves@gmail.com</a></p>
+        </div>
+    </footer>
+
+    <!-- Karşılaştırma akışı için JS gerekmiyor -->
+</body>
+</html>
