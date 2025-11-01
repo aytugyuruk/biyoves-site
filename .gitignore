@@ -1,0 +1,8 @@
+# Ignore large binaries locally
+downloads/
+*.exe
+.DS_Store
+
+# Firebase database rules (managed in Firebase Console)
+database.rules.json
+
