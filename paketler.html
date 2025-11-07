@@ -190,6 +190,7 @@
             display: flex;
             align-items: center;
             gap: 18px;
+            flex-wrap: wrap;
         }
         .main-nav a {
             color: var(--text-secondary);
@@ -346,7 +347,15 @@
         }
         
         @media (max-width: 992px) {
-            .main-nav { display: none; }
+            .main-header .container {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .main-nav {
+                justify-content: center;
+                width: 100%;
+                gap: 12px;
+            }
             .packages-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -385,6 +394,10 @@
                 font-size: 0.95rem;
                 width: 100%;
                 max-width: 280px;
+            }
+            .main-nav a {
+                flex: 1 1 100%;
+                text-align: center;
             }
 
             .package-card {
