@@ -486,13 +486,16 @@
                 align-items: center;
             }
             .main-header .container {
-                flex-direction: column;
+                flex-wrap: wrap;
                 gap: 12px;
             }
             .main-nav {
                 justify-content: center;
-                width: 100%;
-                gap: 12px;
+                gap: 8px;
+            }
+            .main-nav a {
+                font-size: 0.9rem;
+                padding: 6px 8px;
             }
             .features-grid {
                 grid-template-columns: 1fr;
@@ -544,9 +547,12 @@
                 width: 100%;
                 max-width: 280px;
             }
+            .main-nav {
+                gap: 6px;
+            }
             .main-nav a {
-                flex: 1 1 100%;
-                text-align: center;
+                font-size: 0.85rem;
+                padding: 6px 6px;
             }
             
             .steps-container {
