@@ -47,7 +47,7 @@
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.07);
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             
-            --max-width: 1200px;
+            --max-width: 1400px;
             --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -129,6 +129,7 @@
             text-decoration: none;
             white-space: nowrap;
             min-height: 48px;
+            width: 100%;
         }
 
         .btn:focus-visible {
@@ -162,7 +163,7 @@
 
         .main-header .container {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
         }
 
@@ -203,14 +204,15 @@
 
         /* ========== PACKAGES GRID ========== */
         .packages-container {
-            max-width: 1400px;
+            max-width: var(--max-width);
             margin: 0 auto;
         }
 
+        /* MASAÜSTÜ: HER ZAMAN 5 SÜTUN */
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: var(--spacing-lg);
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--spacing-md);
             align-items: stretch;
         }
 
@@ -219,7 +221,7 @@
             background: var(--color-bg-primary);
             border: 2px solid var(--color-border);
             border-radius: var(--radius-lg);
-            padding: var(--spacing-xl);
+            padding: var(--spacing-lg);
             text-align: center;
             transition: var(--transition);
             display: flex;
@@ -253,7 +255,6 @@
         .package-card.featured {
             border-color: var(--color-accent);
             border-width: 3px;
-            transform: scale(1.02);
             z-index: 2;
         }
 
@@ -287,7 +288,7 @@
         }
 
         .package-price {
-            font-size: 2.75rem;
+            font-size: 2.25rem;
             font-weight: 800;
             color: var(--color-accent);
             margin-bottom: var(--spacing-xs);
@@ -326,7 +327,7 @@
             align-items: center;
             gap: var(--spacing-sm);
             padding: var(--spacing-xs) 0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .package-features li::before {
@@ -335,11 +336,6 @@
             font-weight: 700;
             font-size: 1.1rem;
             flex-shrink: 0;
-        }
-
-        .package-button {
-            width: 100%;
-            margin-top: auto;
         }
 
         /* ========== FOOTER ========== */
@@ -364,70 +360,45 @@
             color: var(--color-accent);
         }
 
-        /* ========== RESPONSIVE DESIGN ========== */
-        @media (max-width: 1200px) {
+        /* ========== MOBILE & TABLET: TEK SÜTUN ========== */
+        @media (max-width: 1400px) {
             .packages-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+                gap: var(--spacing-lg);
             }
-            
+
+            .package-card {
+                padding: var(--spacing-xl);
+            }
+
             .package-card.featured {
-                transform: scale(1);
+                order: -1;
+            }
+
+            .package-price {
+                font-size: 2.75rem;
+            }
+
+            .main-header .container {
+                flex-direction: column;
+                gap: var(--spacing-sm);
             }
         }
 
+        /* ========== SMALL MOBILE OPTIMIZATIONS ========== */
         @media (max-width: 768px) {
             html {
                 font-size: 15px;
             }
-            
+
             .container {
                 padding: 0 var(--spacing-md);
             }
-            
+
             section {
                 padding: var(--spacing-2xl) 0;
-            }
-            
-            .packages-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: var(--spacing-md);
-            }
-            
-            .package-card {
-                padding: var(--spacing-lg);
-            }
-            
-            .package-price {
-                font-size: 2.25rem;
-            }
-            
-            .main-nav {
-                gap: var(--spacing-sm);
-            }
-            
-            .main-nav a {
-                font-size: 0.9rem;
-                padding: var(--spacing-xs) var(--spacing-sm);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .packages-grid {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-                margin: 0 auto;
-            }
-            
-            .package-card.featured {
-                order: -1;
-            }
-            
-            .section-subtitle {
-                font-size: 1rem;
-            }
-            
-            .btn {
-                width: 100%;
             }
         }
 
@@ -435,21 +406,17 @@
             h1 {
                 font-size: 1.75rem;
             }
-            
+
             h2 {
                 font-size: 1.5rem;
             }
-            
-            .package-price {
-                font-size: 2rem;
-            }
-            
+
             .package-card {
                 padding: var(--spacing-md);
             }
-            
-            .main-header {
-                padding: var(--spacing-sm) 0;
+
+            .package-price {
+                font-size: 2.25rem;
             }
         }
     </style>
@@ -511,7 +478,7 @@
                     </article>
 
                     <article class="package-card featured">
-                        <h3 class="package-name">Standart Paket</h3>
+                        <h3 class="package-name">Standart Paketi</h3>
                         <div class="package-price">
                             250<span class="package-price-unit">₺</span>
                         </div>
