@@ -1,8 +1,105 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Download as DownloadIcon } from "lucide-react";
+import { Download as DownloadIcon, Loader2 } from "lucide-react";
+
+const GITHUB_REPO = "aytugyuruk/biyoves-site";
+const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_REPO}/releases`;
+
+// Semver versiyon karşılaştırması (1.0.0, 1.0.1 formatında)
+const compareVersions = (a: string, b: string): number => {
+  const partsA = a.split('.').map(Number);
+  const partsB = b.split('.').map(Number);
+  
+  for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
+    const partA = partsA[i] || 0;
+    const partB = partsB[i] || 0;
+    if (partA > partB) return 1;
+    if (partA < partB) return -1;
+  }
+  return 0;
+};
+
+interface Release {
+  tag_name: string;
+  assets: Array<{
+    name: string;
+    browser_download_url: string;
+  }>;
+}
 
 const Download = () => {
+  const [latestVersion, setLatestVersion] = useState<string | null>(null);
+  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchLatestRelease = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+        
+        const response = await fetch(GITHUB_API_URL);
+        if (!response.ok) {
+          throw new Error('GitHub API\'den release bilgileri alınamadı');
+        }
+        
+        const releases: Release[] = await response.json();
+        
+        if (releases.length === 0) {
+          throw new Error('Henüz release bulunmuyor');
+        }
+        
+        // Tüm release'lerden en büyük versiyonu bul
+        const sortedReleases = releases
+          .filter(release => /^\d+\.\d+\.\d+$/.test(release.tag_name)) // Sadece 1.0.0 formatındaki tag'leri al
+          .sort((a, b) => compareVersions(b.tag_name, a.tag_name)); // Büyükten küçüğe sırala
+        
+        if (sortedReleases.length === 0) {
+          throw new Error('Geçerli versiyon formatında release bulunamadı');
+        }
+        
+        const latestRelease = sortedReleases[0];
+        const version = latestRelease.tag_name;
+        
+        // .exe dosyasını bul
+        const exeAsset = latestRelease.assets.find(asset => 
+          asset.name.endsWith('.exe') && asset.name.includes(version)
+        );
+        
+        if (!exeAsset) {
+          // Eğer asset'te versiyon yoksa, ilk .exe dosyasını kullan
+          const anyExe = latestRelease.assets.find(asset => asset.name.endsWith('.exe'));
+          if (anyExe) {
+            setDownloadUrl(anyExe.browser_download_url);
+            setLatestVersion(version);
+          } else {
+            // Asset yoksa, GitHub releases download URL'i oluştur
+            const exeFilename = `BiyoVes_Setup_${version}.exe`;
+            setDownloadUrl(`https://github.com/${GITHUB_REPO}/releases/download/${version}/${exeFilename}`);
+            setLatestVersion(version);
+          }
+        } else {
+          setDownloadUrl(exeAsset.browser_download_url);
+          setLatestVersion(version);
+        }
+      } catch (err) {
+        console.error('Release bilgisi alınırken hata:', err);
+        setError(err instanceof Error ? err.message : 'Bilinmeyen bir hata oluştu');
+        // Fallback: Eğer API hatası varsa, varsayılan bir versiyon kullan
+        setLatestVersion("1.0.0");
+        setDownloadUrl(`https://github.com/${GITHUB_REPO}/releases/download/1.0.0/BiyoVes_Setup_1.0.0.exe`);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchLatestRelease();
+  }, []);
+
+  const exeFilename = latestVersion ? `BiyoVes_Setup_${latestVersion}.exe` : 'BiyoVes_Setup.exe';
+
   return (
     <section id="download" className="py-12 md:py-16">
       <div className="container">
@@ -26,20 +123,38 @@ const Download = () => {
                   </div>
                 </div>
                 <h3 className="mb-3 text-xl font-semibold text-foreground transition-colors duration-300 group-hover:text-primary text-center">Windows</h3>
-                <p className="mb-6 text-base text-muted-foreground transition-colors duration-300 group-hover:text-foreground/80 text-center">Windows 10 (64-bit) ve üzeri</p>
-                <a
-                  href="https://github.com/aytugyuruk/biyoves-site/releases/download/exe/BiyoVes_Setup_1.0.0.exe"
-                  download="BiyoVes_Setup_1.0.0.exe"
-                  className="block w-full"
-                >
+                <p className="mb-6 text-base text-muted-foreground transition-colors duration-300 group-hover:text-foreground/80 text-center">
+                  Windows 10 (64-bit) ve üzeri
+                  {latestVersion && (
+                    <span className="block mt-2 text-sm text-primary">v{latestVersion}</span>
+                  )}
+                </p>
+                {isLoading ? (
                   <Button 
-                    className="w-full bg-gradient-primary shadow-soft transition-all duration-500 ease-out hover:shadow-hover hover:scale-105 hover:-translate-y-0.5" 
+                    className="w-full bg-gradient-primary shadow-soft" 
                     size="lg"
+                    disabled
                   >
-                    <DownloadIcon className="mr-2 h-5 w-5 transition-transform duration-500 group-hover:translate-y-0.5" />
-                    İndir
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    Yükleniyor...
                   </Button>
-                </a>
+                ) : error ? (
+                  <div className="text-sm text-destructive mb-4">{error}</div>
+                ) : downloadUrl ? (
+                  <a
+                    href={downloadUrl}
+                    download={exeFilename}
+                    className="block w-full"
+                  >
+                    <Button 
+                      className="w-full bg-gradient-primary shadow-soft transition-all duration-500 ease-out hover:shadow-hover hover:scale-105 hover:-translate-y-0.5" 
+                      size="lg"
+                    >
+                      <DownloadIcon className="mr-2 h-5 w-5 transition-transform duration-500 group-hover:translate-y-0.5" />
+                      İndir {latestVersion && `(v${latestVersion})`}
+                    </Button>
+                  </a>
+                ) : null}
               </CardContent>
             </Card>
           </div>
