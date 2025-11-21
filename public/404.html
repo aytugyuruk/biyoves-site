@@ -10,8 +10,10 @@
       var path = window.location.pathname;
       var search = window.location.search;
       var hash = window.location.hash;
-      var newPath = '/index.html' + (path !== '/' ? '?path=' + encodeURIComponent(path) : '') + search + hash;
-      window.location.replace(newPath);
+      if (path !== '/index.html') {
+        var newPath = '/index.html' + (path !== '/' ? '?path=' + encodeURIComponent(path) : '') + search + hash;
+        window.location.replace(newPath);
+      }
     </script>
   </head>
   <body>
