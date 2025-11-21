@@ -24,7 +24,7 @@ const Marquee = ({ items, speed = 40, direction = "left", className = "" }: Marq
           {duplicatedItems.map((item, index) => (
             <div
               key={index}
-              className="flex-shrink-0 whitespace-nowrap text-sm font-medium text-muted-foreground px-4"
+              className="flex-shrink-0 whitespace-nowrap text-xs sm:text-sm font-medium text-muted-foreground px-2 sm:px-4"
             >
               {item}
             </div>

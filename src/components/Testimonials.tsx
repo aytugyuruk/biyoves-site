@@ -68,7 +68,7 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={testimonial.id} 
@@ -107,34 +107,36 @@ const Testimonials = () => {
         </div>
 
         <div className="mt-12 text-center animate-fade-in" style={{ animationDelay: '0.8s' }}>
-          <div className="inline-flex items-center gap-8 bg-card p-6 rounded-lg border border-border/50 shadow-soft transition-all duration-500 hover:shadow-hover">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-8 bg-card p-4 sm:p-6 rounded-lg border border-border/50 shadow-soft transition-all duration-500 hover:shadow-hover">
             <div className="text-center group cursor-default">
               <AnimatedCounter
                 value={50}
                 suffix="+"
-                className="text-3xl font-bold text-primary mb-1 transition-transform duration-300 group-hover:scale-110"
+                className="text-2xl sm:text-3xl font-bold text-primary mb-1 transition-transform duration-300 group-hover:scale-110"
               />
-              <div className="text-sm text-muted-foreground">Profesyonel Stüdyo</div>
+              <div className="text-xs sm:text-sm text-muted-foreground">Profesyonel Stüdyo</div>
             </div>
-            <div className="h-12 w-px bg-border"></div>
+            <div className="hidden sm:block h-12 w-px bg-border"></div>
+            <div className="w-full sm:w-auto h-px sm:h-12 sm:w-px bg-border"></div>
             <div className="text-center group cursor-default">
               <AnimatedCounter
                 value={1000}
                 suffix="+"
-                className="text-3xl font-bold text-primary mb-1 transition-transform duration-300 group-hover:scale-110"
+                className="text-2xl sm:text-3xl font-bold text-primary mb-1 transition-transform duration-300 group-hover:scale-110"
               />
-              <div className="text-sm text-muted-foreground">İşlenen Fotoğraf</div>
+              <div className="text-xs sm:text-sm text-muted-foreground">İşlenen Fotoğraf</div>
             </div>
-            <div className="h-12 w-px bg-border"></div>
+            <div className="hidden sm:block h-12 w-px bg-border"></div>
+            <div className="w-full sm:w-auto h-px sm:h-12 sm:w-px bg-border"></div>
             <div className="text-center group cursor-default">
               <div className="flex items-center gap-1 justify-center mb-1">
                 <AnimatedCounter
                   value={4.9}
-                  className="text-3xl font-bold text-primary transition-transform duration-300 group-hover:scale-110"
+                  className="text-2xl sm:text-3xl font-bold text-primary transition-transform duration-300 group-hover:scale-110"
                 />
-                <Star className="w-6 h-6 fill-amber-400 text-amber-400 transition-transform duration-300 group-hover:rotate-12" />
+                <Star className="w-5 h-5 sm:w-6 sm:h-6 fill-amber-400 text-amber-400 transition-transform duration-300 group-hover:rotate-12" />
               </div>
-              <div className="text-sm text-muted-foreground">Memnuniyet Puanı</div>
+              <div className="text-xs sm:text-sm text-muted-foreground">Memnuniyet Puanı</div>
             </div>
           </div>
         </div>

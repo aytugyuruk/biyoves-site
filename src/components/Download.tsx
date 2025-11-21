@@ -15,9 +15,9 @@ const Download = () => {
             BiyoVes'i ücretsiz indirin ve profesyonel fotoğraflar oluşturmaya başlayın
           </p>
 
-          <div className="grid gap-6 sm:grid-cols-2 max-w-2xl mx-auto">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 max-w-2xl mx-auto">
             <Card className="group border-border/50 transition-all duration-700 ease-out hover:border-primary/50 hover:shadow-hover hover:-translate-y-2 hover:scale-[1.02] animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-6">
                 <div className="mb-4 flex justify-center">
                   <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-primary transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg">
                     <svg className="h-8 w-8 text-primary-foreground transition-transform duration-500 group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor">
@@ -39,7 +39,7 @@ const Download = () => {
             </Card>
 
             <Card className="group border-border/50 transition-all duration-700 ease-out hover:border-primary/50 hover:shadow-hover hover:-translate-y-2 hover:scale-[1.02] animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-6">
                 <div className="mb-4 flex justify-center">
                   <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-primary transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg">
                     <svg className="h-8 w-8 text-primary-foreground transition-transform duration-500 group-hover:scale-110 flex-shrink-0" viewBox="0 0 14 17" fill="currentColor" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
@@ -61,9 +61,9 @@ const Download = () => {
             </Card>
           </div>
 
-          <div className="mt-12 rounded-xl border border-border/50 bg-muted/50 p-6">
-            <h4 className="mb-6 text-center font-semibold text-foreground">Sistem Gereksinimleri</h4>
-            <div className="grid gap-6 sm:grid-cols-2 max-w-2xl mx-auto">
+          <div className="mt-8 sm:mt-12 rounded-xl border border-border/50 bg-muted/50 p-4 sm:p-6">
+            <h4 className="mb-4 sm:mb-6 text-center text-base sm:text-lg font-semibold text-foreground">Sistem Gereksinimleri</h4>
+            <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 max-w-2xl mx-auto">
               <div className="flex flex-col items-center text-center space-y-2">
                 <p className="text-base font-semibold text-foreground">Windows</p>
                 <div className="space-y-1">

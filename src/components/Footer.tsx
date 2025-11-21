@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="border-t border-border bg-muted/50">
-      <div className="container py-12">
-        <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
+      <div className="container py-8 sm:py-12">
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-3 max-w-5xl mx-auto">
           {/* Product */}
           <div className="text-center md:text-left">
             <h3 className="mb-4 text-base font-semibold text-foreground">Ürün</h3>
@@ -84,7 +84,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
+        <div className="mt-8 sm:mt-12 border-t border-border pt-6 sm:pt-8 text-center text-xs sm:text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} BiyoVes. Tüm hakları saklıdır.</p>
         </div>
       </div>

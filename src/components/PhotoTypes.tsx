@@ -9,7 +9,7 @@ const PhotoTypes = () => {
               <span className="bg-gradient-primary bg-clip-text text-transparent">Fotoğraf Tipleri</span>
             </h2>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { title: "Biyometrik", size: "50x60 mm", use: "Pasaport ve T.C. Kimlik Kartı" },
               { title: "Vesikalık", size: "45x60 mm", use: "CV, Öğrenci Belgesi, Okul" },

@@ -64,7 +64,7 @@ const Pricing = () => {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-5 max-w-7xl mx-auto overflow-visible">
+        <div className="mt-12 md:mt-16 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-5 max-w-7xl mx-auto overflow-visible">
           {packages.map((pkg, index) => (
               <div
                 key={index}
@@ -86,18 +86,18 @@ const Pricing = () => {
                 </div>
               )}
 
-              <CardHeader className="text-center pb-4">
-                <h3 className="text-xl font-bold text-foreground mb-2">{pkg.name} Paket</h3>
-                <p className="text-sm text-muted-foreground">{pkg.description}</p>
+              <CardHeader className="text-center pb-3 sm:pb-4 px-4 sm:px-6 pt-4 sm:pt-6">
+                <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1 sm:mb-2">{pkg.name} Paket</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground">{pkg.description}</p>
               </CardHeader>
 
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
                 <div className="text-center">
                   <div className="flex items-baseline justify-center gap-1">
-                    <span className="text-4xl font-bold text-foreground">{pkg.price}</span>
-                    <span className="text-lg text-muted-foreground">₺</span>
+                    <span className="text-3xl sm:text-4xl font-bold text-foreground">{pkg.price}</span>
+                    <span className="text-base sm:text-lg text-muted-foreground">₺</span>
                   </div>
-                  <p className="text-sm text-muted-foreground mt-2">
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2">
                     {pkg.credits} adet hak
                   </p>
                 </div>
@@ -119,10 +119,10 @@ const Pricing = () => {
                 </div>
               </CardContent>
 
-              <CardFooter className="pt-6">
+              <CardFooter className="pt-4 sm:pt-6 px-4 sm:px-6 pb-4 sm:pb-6">
                 <Button
                   size="lg"
-                  className={`w-full transition-all duration-500 ease-out hover:shadow-hover hover:scale-105 ${
+                  className={`w-full h-11 sm:h-10 text-sm sm:text-base transition-all duration-500 ease-out hover:shadow-hover hover:scale-105 ${
                     pkg.popular
                       ? "bg-gradient-primary shadow-soft"
                       : "bg-primary hover:bg-primary/90"
@@ -131,7 +131,7 @@ const Pricing = () => {
                 >
                   <a href={pkg.shopierUrl} target="_blank" rel="noopener noreferrer">
                     Satın Al
-                    <ExternalLink className="ml-2 h-4 w-4" />
+                    <ExternalLink className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
                   </a>
                 </Button>
               </CardFooter>

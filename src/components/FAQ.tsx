@@ -63,17 +63,17 @@ import {
               </p>
             </div>
   
-            <Accordion type="single" collapsible className="space-y-4">
+            <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
               {faqs.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
-                  className="rounded-lg border border-border/50 bg-card px-6 transition-all hover:border-primary/50 hover:shadow-soft"
+                  className="rounded-lg border border-border/50 bg-card px-4 sm:px-6 transition-all hover:border-primary/50 hover:shadow-soft"
                 >
-                  <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline">
+                  <AccordionTrigger className="text-left text-sm sm:text-base font-semibold text-foreground hover:no-underline">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
+                  <AccordionContent className="text-sm sm:text-base text-muted-foreground">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

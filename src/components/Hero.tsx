@@ -40,45 +40,45 @@ const Hero = () => {
                   Yapay Zeka Destekli Çözüm
                 </span>
               </h1>
-              <p className="text-lg text-muted-foreground md:text-xl leading-relaxed animate-fade-in">
+              <p className="text-base sm:text-lg text-muted-foreground md:text-xl leading-relaxed animate-fade-in">
                 Müşterilerinize <strong className="text-foreground">saniyeler içinde</strong> profesyonel biyometrik fotoğraf hizmeti sunun. 
                 Toplu işleme ile zamandan ve maliyetten tasarruf edin.
               </p>
             </div>
 
             {/* Key Features */}
-            <div className="flex flex-wrap gap-4 animate-fade-in">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/10 border border-accent/20">
-                <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0" />
-                <span className="text-sm font-medium text-foreground">Saniyeler İçinde Sonuç</span>
+            <div className="flex flex-wrap gap-2 sm:gap-4 animate-fade-in">
+              <div className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-accent/10 border border-accent/20">
+                <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 text-accent flex-shrink-0" />
+                <span className="text-xs sm:text-sm font-medium text-foreground">Saniyeler İçinde Sonuç</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/10 border border-accent/20">
-                <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0" />
-                <span className="text-sm font-medium text-foreground">Toplu İşleme</span>
+              <div className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-accent/10 border border-accent/20">
+                <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 text-accent flex-shrink-0" />
+                <span className="text-xs sm:text-sm font-medium text-foreground">Toplu İşleme</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/10 border border-accent/20">
-                <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0" />
-                <span className="text-sm font-medium text-foreground">%100 Yerel İşleme</span>
+              <div className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-accent/10 border border-accent/20">
+                <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 text-accent flex-shrink-0" />
+                <span className="text-xs sm:text-sm font-medium text-foreground">%100 Yerel İşleme</span>
               </div>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col gap-4 sm:flex-row animate-fade-in">
+            <div className="flex flex-col gap-3 sm:gap-4 sm:flex-row animate-fade-in">
               <Button
                 size="lg"
                 onClick={scrollToDownload}
-                className="bg-gradient-primary shadow-soft transition-all duration-500 ease-out hover:shadow-hover hover:scale-105 hover:-translate-y-0.5 text-base px-8"
+                className="bg-gradient-primary shadow-soft transition-all duration-500 ease-out hover:shadow-hover hover:scale-105 hover:-translate-y-0.5 text-sm sm:text-base px-6 sm:px-8 h-12 sm:h-11"
               >
-                <Download className="mr-2 h-5 w-5 transition-transform duration-500 group-hover:translate-y-0.5" />
+                <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-500 group-hover:translate-y-0.5" />
                 Ücretsiz İndir
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-transparent hover:text-foreground text-base px-8"
+                className="transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-transparent hover:text-foreground text-sm sm:text-base px-6 sm:px-8 h-12 sm:h-11"
                 disabled
               >
-                <Play className="mr-2 h-5 w-5 transition-transform duration-500 group-hover:translate-x-0.5" />
+                <Play className="mr-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-500 group-hover:translate-x-0.5" />
                 Demo İzle
               </Button>
             </div>
