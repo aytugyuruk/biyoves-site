@@ -19,7 +19,7 @@ import {
     {
       question: "Hangi işletim sistemlerini destekliyor?",
       answer:
-        "BiyoVes, Windows 10 (64-bit) ve üzeri ile macOS 10.15 ve üzeri işletim sistemlerinde çalışır. Her iki platformda da aynı profesyonel sonuçları alırsınız.",
+        "BiyoVes, Windows 10 (64-bit) ve üzeri işletim sistemlerinde çalışır. Windows platformunda profesyonel sonuçlar alırsınız.",
     },
     {
       question: "Fotoğraflarımı kaç kez indirebilirim?",
