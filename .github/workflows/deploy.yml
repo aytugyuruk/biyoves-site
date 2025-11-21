@@ -35,15 +35,23 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Ensure .nojekyll exists
+      - name: Ensure .nojekyll and public files exist
         run: |
+          # Ensure .nojekyll exists in dist
           touch dist/.nojekyll
-          # Ensure all public files are copied (including .nojekyll if it exists)
+          # Copy .nojekyll from public if it exists
           if [ -f public/.nojekyll ]; then
             cp public/.nojekyll dist/.nojekyll
           fi
-          # Verify .nojekyll exists
-          ls -la dist/.nojekyll
+          # Ensure all public files are in dist (Vite should copy them, but double-check)
+          if [ -d public ]; then
+            cp -r public/* dist/ 2>/dev/null || true
+          fi
+          # Verify critical files exist
+          echo "Checking critical files:"
+          ls -la dist/.nojekyll || echo "WARNING: .nojekyll not found"
+          ls -la dist/site.webmanifest || echo "WARNING: site.webmanifest not found"
+          ls -la dist/CNAME || echo "WARNING: CNAME not found"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
