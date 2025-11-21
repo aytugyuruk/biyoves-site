@@ -27,14 +27,19 @@ const Download = () => {
                 </div>
                 <h3 className="mb-3 text-xl font-semibold text-foreground transition-colors duration-300 group-hover:text-primary text-center">Windows</h3>
                 <p className="mb-6 text-base text-muted-foreground transition-colors duration-300 group-hover:text-foreground/80 text-center">Windows 10 (64-bit) ve üzeri</p>
-                <Button 
-                  className="w-full bg-gradient-primary shadow-soft transition-all duration-500 ease-out hover:shadow-hover hover:scale-105 hover:-translate-y-0.5" 
-                  size="lg"
-                  disabled
+                <a
+                  href="https://github.com/aytugyuruk/biyoves-site/releases/download/exe/BiyoVes_Setup_1.0.0.exe"
+                  download="BiyoVes_Setup_1.0.0.exe"
+                  className="block w-full"
                 >
-                  <DownloadIcon className="mr-2 h-5 w-5 transition-transform duration-500 group-hover:translate-y-0.5" />
-                  İndir
-                </Button>
+                  <Button 
+                    className="w-full bg-gradient-primary shadow-soft transition-all duration-500 ease-out hover:shadow-hover hover:scale-105 hover:-translate-y-0.5" 
+                    size="lg"
+                  >
+                    <DownloadIcon className="mr-2 h-5 w-5 transition-transform duration-500 group-hover:translate-y-0.5" />
+                    İndir
+                  </Button>
+                </a>
               </CardContent>
             </Card>
           </div>
