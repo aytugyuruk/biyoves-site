@@ -30,5 +30,9 @@ export default defineConfig(({ mode }) => ({
     },
     // Increase chunk size warning limit
     chunkSizeWarningLimit: 1000,
+    // Ensure proper MIME types for GitHub Pages
+    assetsInlineLimit: 4096,
   },
+  // Ensure proper handling of static assets
+  publicDir: 'public',
 }));

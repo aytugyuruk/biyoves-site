@@ -36,7 +36,12 @@ jobs:
         run: npm run build
 
       - name: Ensure .nojekyll exists
-        run: touch dist/.nojekyll
+        run: |
+          touch dist/.nojekyll
+          # Ensure all public files are copied (including .nojekyll if it exists)
+          if [ -f public/.nojekyll ]; then
+            cp public/.nojekyll dist/.nojekyll
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
