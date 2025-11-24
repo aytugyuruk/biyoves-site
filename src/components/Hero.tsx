@@ -101,7 +101,7 @@ const Hero = () => {
               <div className="relative bg-background">
                 <img
                   src="/app-screenshot.png"
-                  alt="BiyoVes Uygulama Arayüzü - AI Destekli Biyometrik Fotoğraf İşleme"
+                  alt="BiyoVes Uygulama Arayüzü - Yapay Zeka Destekli Biyometrik Fotoğraf İşleme"
                   className="w-full h-auto block"
                   loading="lazy"
                   decoding="async"

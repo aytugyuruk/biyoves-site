@@ -105,7 +105,7 @@ const Pricing = () => {
                 <div className="space-y-3">
                   {[
                     "4 uluslararası standart fotoğraf tipi",
-                    "AI destekli otomatik arkaplan kaldırma",
+                    "Yapay zeka destekli otomatik arkaplan kaldırma",
                     "Toplu işleme desteği",
                     "2'li ve 4'lü yazdırma düzenleri",
                   ].map((feature, featureIndex) => (

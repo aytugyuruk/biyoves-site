@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 const features = [
   {
     icon: Sparkles,
-    title: "AI Destekli Arkaplan Kaldırma",
+    title: "Yapay Zeka Destekli Arkaplan Kaldırma",
     description: "MODNet teknolojisi ile müşterilerinizin fotoğraflarını anında profesyonel hale getirin",
     gradient: "from-blue-500 to-cyan-500",
   },
@@ -50,7 +50,7 @@ const Features = () => {
             <span className="bg-gradient-primary bg-clip-text text-transparent">Güçlendirin</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Profesyonel fotoğraf stüdyonuz için tasarlanmış AI destekli çözüm
+            Profesyonel fotoğraf stüdyonuz için tasarlanmış yapay zeka destekli çözüm
           </p>
         </div>
 

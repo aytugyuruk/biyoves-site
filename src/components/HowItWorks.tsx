@@ -3,23 +3,23 @@ import { Upload, Wand2, Download, CheckCircle } from "lucide-react";
 const steps = [
   {
     icon: Upload,
-    title: "Fotoğrafınızı Yükleyin",
-    description: "Herhangi bir fotoğrafı seçin ve uygulamaya yükleyin",
+    title: "Müşteri Fotoğrafını Yükleyin",
+    description: "Müşterinizin fotoğrafını seçin ve uygulamaya yükleyin",
   },
   {
     icon: Wand2,
-    title: "AI İşlesin",
+    title: "Yapay Zeka İşlesin",
     description: "Yapay zeka arka planı kaldırır ve fotoğrafı iyileştirir",
   },
   {
     icon: CheckCircle,
     title: "Formatı Seçin",
-    description: "İhtiyacınıza göre fotoğraf tipini ve düzeni seçin",
+    description: "İhtiyaca göre fotoğraf tipini ve düzeni seçin",
   },
   {
     icon: Download,
     title: "İndirin veya Yazdırın",
-    description: "Profesyonel fotoğrafınız kullanıma hazır",
+    description: "Profesyonel fotoğraf müşteriye teslim için hazır",
   },
 ];
 
@@ -33,7 +33,7 @@ const HowItWorks = () => {
             <span className="bg-gradient-primary bg-clip-text text-transparent">Çalışır</span>?
           </h2>
           <p className="text-lg text-muted-foreground">
-            4 basit adımda profesyonel fotoğraflara sahip olun
+            4 basit adımda müşterilerinize profesyonel fotoğraflar sunun
           </p>
         </div>
 
