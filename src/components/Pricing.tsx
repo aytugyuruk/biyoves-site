@@ -43,7 +43,7 @@ const packages = [
     name: "Elit",
     price: 3000,
     credits: 1000,
-    description: "Büyük ölçekli işletmeler için",
+    description: "Büyük işletmeler için",
     popular: false,
     gradient: "from-amber-500 to-yellow-500",
     shopierUrl: "https://www.shopier.com/biyoves/40793686",
