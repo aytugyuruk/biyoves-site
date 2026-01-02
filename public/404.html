@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BiyoVes - Profesyonel Biyometrik ve Vize Fotoğrafları</title>
+    <script>
+      // GitHub Pages için React Router fallback
+      // Tüm istekleri index.html'e yönlendir
+      var path = window.location.pathname;
+      var search = window.location.search;
+      var hash = window.location.hash;
+      if (path !== '/index.html') {
+        var newPath = '/index.html' + (path !== '/' ? '?path=' + encodeURIComponent(path) : '') + search + hash;
+        window.location.replace(newPath);
+      }
+    </script>
+  </head>
+  <body>
+    <p>Yönlendiriliyor...</p>
+  </body>
+</html>
+
